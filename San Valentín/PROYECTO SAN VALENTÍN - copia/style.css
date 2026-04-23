@@ -1,0 +1,264 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:'Times New Roman', Times, serif;
+    height: 100vh;
+
+    background:
+        linear-gradient(
+            rgba(255, 118, 76, 0),
+            rgba(255, 93, 52, 0.356)
+        ),
+        url("fondo3.jpg");
+    background-size: cover;             /* ocupa toda la pantalla */
+    background-position: center;        /* centrada */
+    background-repeat: no-repeat;
+    /* background: linear-gradient(180deg, #ff985c, #ffc6ab); */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CONTENEDOR GENERAL */
+.app {
+    /* width: 100%;
+    max-width: 600px; */
+    text-align: center;
+    justify-content: center;
+}
+
+/* TÍTULO */
+h1 {  
+    margin-bottom: 80px;
+    color: #ff7474;
+    font-size: 40px;
+    z-index: 0;   /* JERARQUÍA DE CAPAS */
+    /* animation: tituloZoom 1.8s ease-out forwards; */
+}
+
+/* SOBRE */
+.sobre {
+    position: relative;
+    width: 400px;
+    height: 350px;      /* ⬅ MÁS ALTO */
+    margin: auto;
+    margin-top: -80px;   /* ⬅ SUBE LA CARTA */
+    overflow: hidden;        /* ⬅ CLAVE */
+}
+
+/* CUERPO */
+.cuerpo {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+    background: #ff7474;
+    border-radius: 0 0 20px 20px;
+    z-index: 5;
+}
+
+/* CARTA */
+.carta {
+    position: absolute;
+    bottom: 20px;
+    left: 10%;
+    width: 80%;
+    height: 190px;
+    background: #fff7f7;
+    border-radius: 15px;
+    padding: 10px;
+    color: #b30047;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+
+    transform: translateY(140px);  /* ⬅ ARRANCA MÁS ABAJO */
+    transition: transform 2s ease; 
+    z-index: 3;
+}
+
+/* TAPA */
+.tapa {
+    position: absolute;
+    top: 150px;     /* ACÁ COINSIDE CON EL SOBRE */
+    width: 100%;
+    height: 130px;
+    background: #ff4747;
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    transform-origin: top;
+    transition: transform 1s;
+    z-index: 6;
+}
+
+
+/* TAPA ABIERTA */
+.sobre.tapa-abierta .tapa {
+    transform: rotateX(180deg);
+    z-index: 3;
+}
+
+/* CARTA SALE DESPUÉS */
+.sobre.carta-sale .carta {
+    transform: translateY(-90px);
+    z-index: 3;
+}
+
+/* CORAZONES */
+.corazon {
+    position: absolute;
+    pointer-events: none;
+    z-index: 4;
+}
+
+/* BOTONES */
+.botones {
+    margin-top: 30px;
+    display: flex;
+    margin-left: 170px;
+    gap: 40px; /* ⬅ separación entre botones */
+}
+
+button {
+    padding: 12px 28px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.15); /* se agranda */
+
+    box-shadow: 0 0 20px rgb(255, 69, 56); /* brillaaaaaa */
+}
+
+button:active {
+    transform: scale(1.2);
+    box-shadow:
+        0 0 35px rgb(255, 74, 42);
+}
+
+#si {
+    background: #ff7474;
+    color: white;
+    position: static;
+}
+
+#si:hover {
+    animation: latido-click 4s ease-in-out infinite;
+}
+@keyframes latido-click {
+    0%   { transform: scale(1); }
+    25%  { transform: scale(1.12); }
+    50%  { transform: scale(0.96); }
+    75%  { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+#no {
+    background: #555;
+    color: white;
+    position: relative;
+    z-index: 99;
+}
+#no.tiembla {
+    animation: temblor 0.25s ease-in-out;
+}
+@keyframes temblor {
+    0%   { transform: translateX(0); }
+    25%  { transform: translateX(-3px); }
+    50%  { transform: translateX(3px); }
+    75%  { transform: translateX(-2px); }
+    100% { transform: translateX(0); }
+}
+.desaparecer {
+    opacity: 0;
+    transform: scale(0.7) translateY(10px);
+    transition: 
+        opacity 0.8s ease,
+        transform 0.8s ease;
+    pointer-events: none;
+}
+
+.tip-no {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.616);
+    color: #ff4d6d;
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    white-space: nowrap;
+
+    /* pos */
+    top: 580px;
+    left: 800px;
+
+    opacity: 1;
+    transform: translateY(0) scale(1);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+
+    animation:
+        flotar 2s ease-in-out infinite;
+}
+@keyframes flotar {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
+}
+.tip-no.ocultar {
+    opacity: 0;
+    transform: translateY(10px) scale(0.7);
+    pointer-events: none;
+}
+
+/* CANCIÓN */
+.song-name {
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    font-size: 15px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #ff3d3d;
+}
+
+/* ////////// */
+.reapretar {
+    position: fixed;
+    bottom: 20px;
+    left: 30%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.541);
+    color: #ff4d6d;
+    padding: 10px 24px;
+    border-radius: 20px;
+    font-size: 14px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.048);
+    white-space: nowrap;
+
+    z-index: 100;
+
+    opacity: 0; /* Arranca invisible */
+    transform: translateX(-50%) translateY(10px) scale(0.7); /* efecto inicial pequeño */
+    transition: opacity 0.8s ease, transform 0.8s ease;
+
+    animation: flotar 2s ease-in-out infinite;
+}
+
+.reapretar.mostrar {
+    opacity: 1; /* Aparece suavemente */
+    transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.reapretar.ocultar {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px) scale(0.7);
+    pointer-events: none;
+}
