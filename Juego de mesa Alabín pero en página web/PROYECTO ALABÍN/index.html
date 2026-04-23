@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Alabín Digital</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <h1 id="main-title">Alabín — Juego de Memoria</h1>
+
+  <!-- CONFIGURACIÓN -->
+  <div id="config">
+    <h2>Jugadores</h2>
+
+    <div class="player-config" data-player="1">
+      <input type="text" placeholder="Nombre Jugador 1" id="name1">
+      <div class="relics">
+        <img src="relic1.png" onclick="elegirReliquia(1, 'relic1.png', this)">
+        <img src="relic2.png" onclick="elegirReliquia(1, 'relic2.png', this)">
+        <img src="relic3.png" onclick="elegirReliquia(1, 'relic3.png', this)">
+        <img src="relic4.png" onclick="elegirReliquia(1, 'relic4.png', this)">
+      </div>
+    </div>
+
+    <div class="player-config" data-player="2">
+      <input type="text" placeholder="Nombre Jugador 2" id="name2">
+      <div class="relics">
+        <img src="relic1.png" onclick="elegirReliquia(2, 'relic1.png', this)">
+        <img src="relic2.png" onclick="elegirReliquia(2, 'relic2.png', this)">
+        <img src="relic3.png" onclick="elegirReliquia(2, 'relic3.png', this)">
+        <img src="relic4.png" onclick="elegirReliquia(2, 'relic4.png', this)">
+      </div>
+    </div>
+
+   <div class="player-config" data-player="3">
+      <input type="text" placeholder="Nombre Jugador 3" id="name3">
+      <div class="relics">
+        <img src="relic1.png" onclick="elegirReliquia(3, 'relic1.png', this)">
+        <img src="relic2.png" onclick="elegirReliquia(3, 'relic2.png', this)">
+        <img src="relic3.png" onclick="elegirReliquia(3, 'relic3.png', this)">
+        <img src="relic4.png" onclick="elegirReliquia(3, 'relic4.png', this)">
+      </div>
+    </div>
+
+    <div class="player-config" data-player="4">
+      <input type="text" placeholder="Nombre Jugador 4" id="name4">
+      <div class="relics">
+        <img src="relic1.png" onclick="elegirReliquia(4, 'relic1.png', this)">
+        <img src="relic2.png" onclick="elegirReliquia(4, 'relic2.png', this)">
+        <img src="relic3.png" onclick="elegirReliquia(4, 'relic3.png', this)">
+        <img src="relic4.png" onclick="elegirReliquia(4, 'relic4.png', this)">
+      </div>
+    </div>
+
+    <button onclick="iniciarJuego()">Iniciar Juego</button>
+  </div>
+
+    <!-- JUEGO -->
+    <div id="zones" style="display:none;">
+
+        <!-- PANEL IZQUIERDO -->
+        <div id="left-panel">
+            <div id="info">
+                <div id="player-info"></div>
+                <div id="turn-info"></div>
+            </div>
+
+            <div id="dices">
+                <button onclick="tirarDadoNumero()">🎲 Tirar dado numérico</button>
+                <span id="number-result"></span>
+
+                <br><br>
+
+                <button onclick="tirarDadoColor()">🎨 Tirar dado de color</button>
+                <span id="color-result"></span>
+            </div>
+
+            <button onclick="nuevaPartida()">Nueva Partida</button>
+        </div>
+
+        <!-- TABLERO -->
+        <div id="reliquias">
+            <h3>Tablero de Reliquias</h3>
+            <div id="game-board"></div>
+        </div>
+
+        <!-- PEONES A LA DERECHA -->
+        <div id="peones-lateral">
+            <h3>Peones</h3>
+            <div id="peones-preview"></div>
+        </div>
+
+    </div>
+
+    <script src="game.js"></script>
+</body>
+
+</html>
